@@ -46,7 +46,7 @@ async function run() {
       app.post('/request',async(req,res)=>{
         const request=req.body;
         console.log(request);
-        const result=await foodCollection.insertOne(request);
+        const result=await requestCollection.insertOne(request);
         res.send(result)
 
       });

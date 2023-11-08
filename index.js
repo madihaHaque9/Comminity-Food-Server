@@ -33,6 +33,7 @@ async function run() {
       const result= await cursor.toArray();
       res.send(result)
     })
+   
     app.get('/foods/:id',async(req,res)=>{
         const id=req.params.id;
         const query={_id: new ObjectId(id)}
@@ -52,6 +53,12 @@ async function run() {
         const result=await requestCollection.find(query).toArray();
         res.send(result)
       })
+      app.post('/foods',async(req,res)=>{
+        const newFood=req.body;
+        console.log(newFood)
+        const result=await foodCollection.insertOne(newFood)
+        res.send(result)
+      })
       app.post('/request',async(req,res)=>{
         const request=req.body;
         console.log(request);
@@ -59,6 +66,12 @@ async function run() {
         res.send(result)
 
       });
+      app.patch('/request/:id',async(req,res)=>{
+        const updatedRequest=req.body;
+        console.log(updatedRequest);
+
+
+      })
       app.delete('/request/:id',async(req,res)=>{
         const id=req.params.id;
         const query={_id: new ObjectId(id)}
